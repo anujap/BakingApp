@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils" />
+        <variable
+            name="recipe_data"
+            type="com.example.anuja.bakingapp.model.RecipeModel">
+        </variable>
+    </data>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        android:layout_margin="@dimen/card_margin"
+        android:paddingBottom="4dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_recipe_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/cd_recipe_image"
+            android:scaleType="centerCrop"
+            android:background="@drawable/recipe_image_border"
+            card_view:layout_constraintLeft_toLeftOf="parent"
+            card_view:layout_constraintRight_toRightOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            android:recipeImage="@{recipe_data.image}"
+            android:visibility="@{!TextUtils.isEmpty(recipe_data.image) ? View.VISIBLE : View.GONE}"/>
+
+            <TextView
+                android:id="@+id/tv_recipe_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_marginStart="@dimen/margin_small"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@id/iv_recipe_img"
+                android:text="@={recipe_data.name}"
+                tools:text="Cake Recipe"/>
+
+            <TextView
+                android:id="@+id/tv_recipe_servings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:text="@{@string/servings(recipe_data.servings)}"
+                card_view:layout_constraintRight_toRightOf="parent"
+                card_view:layout_constraintTop_toTopOf="@id/tv_recipe_name" />
+
+            <TextView
+                android:id="@+id/tv_recipe_steps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_small"
+                card_view:layout_constraintRight_toRightOf="parent"
+                android:text="@{@string/steps(recipe_data.steps.size())}"
+                card_view:layout_constraintTop_toBottomOf="@id/tv_recipe_servings" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
+</layout>
