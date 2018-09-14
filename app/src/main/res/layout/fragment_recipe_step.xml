@@ -65,7 +65,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/vertical_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/horizontal_guideline"
-                tools:text="2. Whisk the graham cracker crumbs, 50 grams (1/4 cup) of sugar, and 1/2 teaspoon of salt together in a medium bowl. Pour the melted butter and 1 teaspoon of vanilla into the dry ingredients and stir together until evenly mixed." />
+                tools:text="Instructions" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/bottom_guideline"
@@ -82,6 +82,7 @@
                 android:background="@drawable/custom_button"
                 android:onClick="@{(v)->stepsViewModel.onPreviousBtnClicked(v)}"
                 android:text="@string/previous_step"
+                android:textColor="@color/white"
                 android:visibility="@{stepsViewModel.previousButtonVisibility}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +96,7 @@
                 android:background="@drawable/custom_button"
                 android:onClick="@{(v)->stepsViewModel.onNextBtnClicked(v)}"
                 android:text="@string/next_step"
+                android:textColor="@color/white"
                 android:visibility="@{stepsViewModel.nextButtonVisibility}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -1,7 +1,6 @@
 package com.example.anuja.bakingapp.app.adapters;
 
 import android.content.Context;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -16,6 +15,9 @@ import com.example.anuja.bakingapp.model.Steps;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Reference - https://stackoverflow.com/questions/27194044/how-to-properly-highlight-selected-item-on-recyclerview
+ */
 public class RecipeDetailStepsAdapter extends RecyclerView.Adapter<RecipeDetailStepsAdapter.RecipeStepsViewHolder> {
 
     private List<Steps> stepsList;
@@ -45,6 +47,7 @@ public class RecipeDetailStepsAdapter extends RecyclerView.Adapter<RecipeDetailS
     public void onBindViewHolder(@NonNull RecipeStepsViewHolder recipeStepsViewHolder, int i) {
         Steps step = stepsList.get(i);
         recipeStepsViewHolder.bind(step, i);
+        recipeStepsViewHolder.itemView.setSelected(currentPosition == i);
     }
 
     @Override
@@ -79,9 +82,10 @@ public class RecipeDetailStepsAdapter extends RecyclerView.Adapter<RecipeDetailS
 
         @Override
         public void onClick(View view) {
-            currentPosition = stepId;
+            notifyItemChanged(currentPosition);
+            currentPosition = getLayoutPosition();
             listItemClickListener.onStepItemClick(getAdapterPosition());
-            notifyDataSetChanged();
+            notifyItemChanged(currentPosition);
         }
     }
 }
