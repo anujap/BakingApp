@@ -77,10 +77,12 @@ public class RecipeStepsFragment extends Fragment {
 
         if (viewModel != null) {
             ExoPlayer exoPlayer = RecipeStepsViewModel.getExoPlayer();
-            currentVideoPosition = exoPlayer.getCurrentPosition();
-            playWhenReady = exoPlayer.getPlayWhenReady();
-            outState.putLong(EXOPLAYER_VIDEO_POSITION, currentVideoPosition);
-            outState.putBoolean(EXOPLAYER_PLAY_WHEN_READY, playWhenReady);
+            if(exoPlayer != null) {
+                currentVideoPosition = exoPlayer.getCurrentPosition();
+                playWhenReady = exoPlayer.getPlayWhenReady();
+                outState.putLong(EXOPLAYER_VIDEO_POSITION, currentVideoPosition);
+                outState.putBoolean(EXOPLAYER_PLAY_WHEN_READY, playWhenReady);
+            }
         }
     }
 

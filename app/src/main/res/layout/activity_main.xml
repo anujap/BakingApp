@@ -3,27 +3,33 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.anuja.bakingapp.app.activities.MainActivity" >
-    <LinearLayout
+
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <!-- Ref:- https://materialdoc.com/components/progress/ -->
-        <ProgressBar
-            android:id="@+id/pb_recipe_list"
+        android:id="@+id/cl_main">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/LinearProgress"
-            android:layout_marginTop="-6dp"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:indeterminate="true"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_recipe_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <!-- Ref:- https://materialdoc.com/components/progress/ -->
+            <ProgressBar
+                android:id="@+id/pb_recipe_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/LinearProgress"
+                android:layout_marginTop="-6dp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:indeterminate="true"/>
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_recipe_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </LinearLayout>
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </layout>

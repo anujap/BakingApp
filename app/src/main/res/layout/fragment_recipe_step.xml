@@ -18,6 +18,7 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             tools:context="com.example.anuja.bakingapp.app.fragments.RecipeStepsFragment">
 
             <com.google.android.exoplayer2.ui.PlayerView
@@ -53,13 +54,14 @@
                 app:layout_constraintEnd_toStartOf="@+id/vertical_guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/horizontal_guideline"
-                tools:src="@drawable/recipe_vector" />
+                tools:src="@drawable/ic_restaurant" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_instructions"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
+                android:justificationMode="inter_word"
                 android:text="@{stepsViewModel.strInstructions}"
                 app:layout_constraintBottom_toTopOf="@+id/bottom_guideline"
                 app:layout_constraintEnd_toEndOf="parent"

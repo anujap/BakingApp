@@ -3,6 +3,8 @@ package com.example.anuja.bakingapp.app.activities;
 import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.anuja.bakingapp.common.ConnectionStatus;
@@ -19,6 +21,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     // connection is unavailable
     protected abstract void onDisconnected();
+
+    // snackbar
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,5 +46,17 @@ public abstract class BaseActivity extends AppCompatActivity {
                     onDisconnected();
             }
         });
+    }
+
+    /**
+     * function called to show snack bar
+     * @param resId - res id to display the message
+     */
+    protected void showSnackBar(CoordinatorLayout coordinatorLayout, int resId) {
+        if(snackbar == null) {
+            snackbar = Snackbar.make(coordinatorLayout, resId, Snackbar.LENGTH_LONG);
+            snackbar.show();
+            snackbar = null;
+        }
     }
 }

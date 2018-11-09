@@ -27,4 +27,13 @@ public class Utils {
 
         return builder.toString();
     }
+
+    public static String getStringByIngredient(Ingredients ingredient) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(ingredient.getQuantity())
+                .append(ingredient.getMeasure())
+                .append(" of ")
+                .append(ingredient.getIngredient());
+        return builder.toString();
+    }
 }

@@ -5,4 +5,11 @@
     <string name="steps">Steps: %s</string>
     <string name="next_step">Next Step</string>
     <string name="previous_step">Previous Step</string>
+
+    <string name="no_connection_message">No Network Connection</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+
+    <string name="str_ingredient">Ingredients</string>
+    <string name="str_recipe">Recipe</string>
 </resources>

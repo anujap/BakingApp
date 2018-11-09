@@ -25,11 +25,13 @@ public class RecipeStepsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_step);
 
-        setUpActionBar();
-
         mStepPosition = getIntent().getIntExtra(RecipeDetailsFragment.INTENT_RECIPE_STEP_POSITION, 0);
         mRecipe = getIntent().getParcelableExtra(RecipeDetailsFragment.INTENT_RECIPE);
-        setUpFragmentContainer();
+
+        if(mRecipe != null) {
+            setUpActionBar();
+            setUpFragmentContainer();
+        }
     }
 
     /**
@@ -40,8 +42,7 @@ public class RecipeStepsActivity extends AppCompatActivity {
 
         if(actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            if(mRecipe != null)
-                actionBar.setTitle(mRecipe.getName());
+            actionBar.setTitle(mRecipe.getName());
         }
     }
 

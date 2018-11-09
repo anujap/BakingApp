@@ -73,11 +73,17 @@ public class RecipeDetailStepsAdapter extends RecyclerView.Adapter<RecipeDetailS
             binding.tvRecipeStepDescription.setText(String.format(Locale.US, "%d. %s", stepId, description));
             if(!TextUtils.isEmpty(step.getVideoURL()))
                 binding.ivRecipeStepVideoIcon.setVisibility(View.VISIBLE);
-
-            if(currentPosition == position)
-                binding.rlDetailsStep.setBackgroundColor(context.getColor(R.color.colorPrimary));
             else
-                binding.rlDetailsStep.setBackgroundColor(context.getColor(R.color.grey));
+                binding.ivRecipeStepVideoIcon.setVisibility(View.INVISIBLE);
+
+            if(currentPosition == position) {
+                binding.tvRecipeStepDescription.setTextColor(context.getColor(R.color.white));
+                binding.rlDetailsStep.setBackgroundColor(context.getColor(R.color.colorPrimary));
+            }
+            else {
+                binding.tvRecipeStepDescription.setTextColor(context.getColor(R.color.black));
+                binding.rlDetailsStep.setBackgroundColor(context.getColor(R.color.white));
+            }
         }
 
         @Override

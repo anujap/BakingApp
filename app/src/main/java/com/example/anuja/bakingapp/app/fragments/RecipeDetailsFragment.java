@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.anuja.bakingapp.R;
+import com.example.anuja.bakingapp.WidgetService;
 import com.example.anuja.bakingapp.app.activities.RecipeDetailsActivity;
 import com.example.anuja.bakingapp.app.activities.RecipeStepsActivity;
 import com.example.anuja.bakingapp.app.adapters.RecipeDetailStepsAdapter;
@@ -44,6 +45,7 @@ public class RecipeDetailsFragment extends Fragment implements RecipeDetailSteps
         setRetainInstance(true);
         isTwoPaneMode = getResources().getBoolean(R.bool.two_pane_mode);
 
+        // get the recipe object
         mRecipe = getArguments().getParcelable(RecipeDetailsActivity.BUNDLE_RECIPE);
     }
 
@@ -73,6 +75,9 @@ public class RecipeDetailsFragment extends Fragment implements RecipeDetailSteps
         if(mRecipe != null) {
             displayIngredients();
             setUpRecyclerView();
+
+            // Storing the recipe in the shared preferences and updating the widgets.
+            WidgetService.startActionToUpdateRecipe(getContext(), mRecipe);
         }
     }
 

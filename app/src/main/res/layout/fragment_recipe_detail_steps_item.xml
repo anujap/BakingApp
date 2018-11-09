@@ -16,7 +16,7 @@
             android:layout_marginStart="8dp"
             android:textSize="18sp"
             tools:text="Recipe Ingredients"
-            android:textColor="@color/white"
+            android:textColor="@android:color/black"
             android:layout_centerVertical="true"/>
 
         <ImageView
@@ -27,9 +27,8 @@
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:tint="@color/white"
-            app:srcCompat="@drawable/ic_play"
-            android:visibility="invisible"/>
+            android:tint="@color/black"
+            app:srcCompat="@drawable/ic_play"/>
 
     </RelativeLayout>
 </layout>

@@ -4,6 +4,10 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,18 +17,22 @@ import android.view.View;
 import com.example.anuja.bakingapp.R;
 import com.example.anuja.bakingapp.app.adapters.RecipeListAdapter;
 import com.example.anuja.bakingapp.databinding.ActivityMainBinding;
+import com.example.anuja.bakingapp.idlingResource.SimpleIdlingResource;
 import com.example.anuja.bakingapp.viewmodel.MainViewModel;
 
 /**
  * This class displays the list of baking recipes
  */
-public class MainActivity extends AppCompatActivity implements RecipeListAdapter.RecipeListItemClickListener {
+public class MainActivity extends BaseActivity implements RecipeListAdapter.RecipeListItemClickListener {
 
-    protected static final String INTENT_RECIPE = "intent_recipe";
+    public static final String INTENT_RECIPE = "intent_recipe";
 
     private MainViewModel viewModel;
     private RecipeListAdapter recipeListAdapter;
     private ActivityMainBinding activityMainBinding;
+
+    @Nullable
+    private SimpleIdlingResource mIdlingResource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +42,13 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
                 , R.layout.activity_main);
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+
         setUpRecyclerViews();
-        retrieveBakingRecipes();
+
+        getIdlingResource();
+        if (mIdlingResource != null) {
+            mIdlingResource.setIdleState(false);
+        }
     }
 
     /**
@@ -75,5 +88,36 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         int noOfColumns = (int) (dpWidth / 280);
         return noOfColumns;
+    }
+
+    /**
+     * function called when the connectivity is available
+     */
+    @Override
+    protected void onConnected() {
+        activityMainBinding.rvRecipeList.setVisibility(View.VISIBLE);
+        retrieveBakingRecipes();
+    }
+
+    /**
+     * function called when the connectivity is unavailable
+     */
+    @Override
+    protected void onDisconnected() {
+        activityMainBinding.pbRecipeList.setVisibility(View.GONE);
+        activityMainBinding.rvRecipeList.setVisibility(View.GONE);
+        showSnackBar(activityMainBinding.clMain, R.string.no_connection_message);
+    }
+
+    /**
+     * Only called from test, creates and returns a new {@link SimpleIdlingResource}.
+     */
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (mIdlingResource == null) {
+            mIdlingResource = new SimpleIdlingResource();
+        }
+        return mIdlingResource;
     }
 }

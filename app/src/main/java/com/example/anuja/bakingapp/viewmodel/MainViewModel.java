@@ -14,6 +14,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * This is the View Model class
+ */
 public class MainViewModel extends ViewModel {
 
     private static final String TAG = "MainViewModel";

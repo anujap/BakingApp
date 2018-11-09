@@ -7,6 +7,7 @@ import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -199,13 +200,12 @@ public class RecipeStepsViewModel {
             // If the path is not empty.
             Picasso.with(imageView.getContext())
                     .load(path)
-                    .placeholder(R.drawable.recipe_vector)
-                    .error(R.drawable.recipe_vector)
+                    .placeholder(R.drawable.ic_restaurant)
                     .into(imageView);
 
         } else {
             // If the path is empty.
-            imageView.setImageResource(R.drawable.recipe_vector);
+            imageView.setImageResource(R.drawable.ic_restaurant);
         }
     }
 }

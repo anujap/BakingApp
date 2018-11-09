@@ -3,6 +3,7 @@ package com.example.anuja.bakingapp.app.activities;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.anuja.bakingapp.R;
 import com.example.anuja.bakingapp.app.callback.OnRecipeStepSelected;
@@ -10,6 +11,10 @@ import com.example.anuja.bakingapp.app.common.FragmentUtils;
 import com.example.anuja.bakingapp.app.fragments.RecipeDetailsFragment;
 import com.example.anuja.bakingapp.model.RecipeModel;
 
+/**
+ * This class displays the recipe ingredients and steps to make
+ * the recipe
+ */
 public class RecipeDetailsActivity extends AppCompatActivity implements OnRecipeStepSelected {
 
     public static final String TAG_RECIPE_DETAILS_FRAG = "recipe_details_frag";
@@ -24,9 +29,12 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnRecipe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_details);
 
+        // get recipe item - Main Activity
         mRecipe = getIntent().getParcelableExtra(MainActivity.INTENT_RECIPE);
-        setUpActionBar();
-        setUpFragmentContainer();
+        if(mRecipe != null) {
+            setUpActionBar();
+            setUpFragmentContainer();
+        }
     }
 
     /**
@@ -37,8 +45,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements OnRecipe
 
         if(actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            if(mRecipe != null)
-                actionBar.setTitle(mRecipe.getName());
+            actionBar.setTitle(mRecipe.getName());
         }
     }
 
